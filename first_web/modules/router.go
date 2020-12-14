@@ -2,7 +2,7 @@ package modules
 
 import ("fmt"; "net/http")
 
-func routingMaster() {
+func Routing_master() {
   http.HandleFunc("/", home_page)
   http.HandleFunc("/about/", about_page)
 
