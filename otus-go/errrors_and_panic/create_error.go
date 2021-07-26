@@ -10,7 +10,7 @@ func foo() (bool, error) {
 }
 
 func boo() (bool, error) {
-  return false, fmt.Errorf("Ошибка %q не найдена", "test")
+  return false, fmt.Errorf("Ошибка %s не найдена", "test")
 }
 
 func main() {
