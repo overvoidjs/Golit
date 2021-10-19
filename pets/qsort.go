@@ -45,7 +45,6 @@ func qsort(arr []int) []int {
       }
     }
 
-    // fmt.Println(less_than)
 
     less_than = qsort(less_than)
     more_than = qsort(more_than)
@@ -56,7 +55,7 @@ func qsort(arr []int) []int {
     return result_arr
 
 	}
-	// fmt.Println(len(arr))
+
 	return arr
 }
 
