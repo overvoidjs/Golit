@@ -7,11 +7,7 @@ import (
 func getHalfOfSlice(arr []int) int {
   x := len(arr) / 2
 
-  if x == 1 {
-    x = 2
-  }
-
-  return x-1
+  return x
 }
 
 func qsort(arr []int) []int {
