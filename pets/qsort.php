@@ -1,26 +1,11 @@
 <?php
 
-function getHalfOfSlice(array $arr): int {
-  $x = count($arr) / 2;
-
-  return (int)$x;
-}
-
 function qsort(array $arr): array {
-  if(count($arr) <= 1){
+  if(count($arr) < 2){
     return $arr;
-  } elseif (count($arr) == 2) {
-    if($arr[0] > $arr[1]){
-      $result_arr[] = $arr[1];
-      $result_arr[] = $arr[0];
-
-      return $result_arr;
-    } else {
-      return $arr;
-    }
   } else {
-    $half_index = getHalfOfSlice($arr);
-    $pivot = $arr[$half_index];
+    $half_index = count($arr) / 2;
+    $pivot = $arr[(int)$half_index];
 
     $less_than = [];
     $more_than = [];
@@ -36,11 +21,7 @@ function qsort(array $arr): array {
     $less_than = qsort($less_than);
     $more_than = qsort($more_than);
 
-    $result_arr = $less_than;
-    $result_arr[] = $pivot;
-    $result_arr = array_merge($result_arr,$more_than);
-
-    return $result_arr;
+    return array_merge($less_than,array($pivot),$more_than);
   }
 }
 
