@@ -4,28 +4,12 @@ import (
 	"fmt"
 )
 
-func getHalfOfSlice(arr []int) int {
-	x := len(arr) / 2
-
-	return x
-}
-
 func qsort(arr []int) []int {
-	if len(arr) <= 1 {
+	if len(arr) < 2 {
 		return arr
-	} else if len(arr) == 2 {
-		result_arr := []int{}
-		if arr[0] > arr[1] {
-			result_arr = append(result_arr, arr[1])
-			result_arr = append(result_arr, arr[0])
-
-			return result_arr
-		} else {
-			return arr
-		}
 	} else {
 		//Вычисляем серидину массива
-		half_index := getHalfOfSlice(arr)
+		half_index := len(arr) / 2
 
 		//Записываем наш опорный индекс
 		pivot := arr[half_index]
@@ -48,14 +32,13 @@ func qsort(arr []int) []int {
 		result_arr = append(result_arr, more_than...)
 
 		return result_arr
-
 	}
 
 	return arr
 }
 
 func main() {
-	arr := []int{64, 13, 22, 16, 4, 5}
+	arr := []int{64, 13}
 
 	fmt.Println(qsort(arr))
 }
