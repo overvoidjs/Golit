@@ -31,12 +31,14 @@ $processed = [];
 
 //Функция поиска узла с наименьшей стоимостью среди необработанных
 function findLowestCostNode($costs){
+
   $lowest_cost = INF;
   $lowest_cost_node = null;
+
   foreach ($costs as $key => $cost) {
     //А тут ее вдруг нет
-    var_dump($processed);
-    die();
+    // var_dump($processed);
+    // die();
     if( $cost < $lowest_cost && !in_array($key, $processed) ){
       $lowest_cost = $cost;
       $lowest_cost_node = $key;
@@ -57,10 +59,10 @@ while ( !is_null($node) ) {
       $parents[$n] = $node;
     }
   }
-  $processed[] = $node;
   // А тут опять есть
-  // var_dump($processed);
-  // die();
+  var_dump($processed);
+  die();
+  $processed[] = $node;
   $node = findLowestCostNode($costs);
 }
 
