@@ -25,20 +25,15 @@ $parents["in"] = null;
 
 //Таблица уже обработанный узлов графа
 $processed = [];
-// Переменная есть
-// var_dump($processed);
-// die();
 
 //Функция поиска узла с наименьшей стоимостью среди необработанных
 function findLowestCostNode($costs){
 
   $lowest_cost = INF;
   $lowest_cost_node = null;
+  global $processed;
 
   foreach ($costs as $key => $cost) {
-    //А тут ее вдруг нет
-    // var_dump($processed);
-    // die();
     if( $cost < $lowest_cost && !in_array($key, $processed) ){
       $lowest_cost = $cost;
       $lowest_cost_node = $key;
@@ -59,9 +54,7 @@ while ( !is_null($node) ) {
       $parents[$n] = $node;
     }
   }
-  // А тут опять есть
-  var_dump($processed);
-  die();
+
   $processed[] = $node;
   $node = findLowestCostNode($costs);
 }
