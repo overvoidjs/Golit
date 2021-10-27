@@ -21,7 +21,6 @@ $costs["fin"] = INF;
 $parents = [];
 $parents["a"] = "start";
 $parents["b"] = "start";
-$parents["in"] = null;
 
 //Таблица уже обработанный узлов графа
 $processed = [];
@@ -42,16 +41,17 @@ function findLowestCostNode($costs){
   return $lowest_cost_node;
 }
 
-$node = findLowestCostNode($costs);
+$node = findLowestCostNode($costs); //Находим узел с наименьшей стоимостью
 
-while ( !is_null($node) ) {
-  $cost = $costs[$node];
-  $neighbors = $graph[$node];
-  foreach (array_keys($neighbors) as $key => $n) {
+while ( !is_null($node) ) { //Пока не обработаны все узлы
+  $cost = $costs[$node]; //Текущая цена узла
+  $neighbors = $graph[$node]; //Соседи этого узла
+
+  foreach (array_keys($neighbors) as $key => $n) { //Пройдемся по всем соседям
     $new_cost = $cost + $neighbors[$n];
-    if( $costs[$n] > $new_cost ){
-      $costs[$n] = $new_cost;
-      $parents[$n] = $node;
+    if( $costs[$n] > $new_cost ){ //Если можно добраться быстрее
+      $costs[$n] = $new_cost; //- обновим стоимость
+      $parents[$n] = $node; // Назначим нового родитея
     }
   }
 
@@ -59,4 +59,23 @@ while ( !is_null($node) ) {
   $node = findLowestCostNode($costs);
 }
 
-var_dump( $costs );
+
+//Функция поиска оптимально маршрута по графу
+function findOptimalWay($parents){
+  $parents = array_reverse($parents, true);
+  $first_key = array_keys($parents)[0];
+  $way[] = $first_key;
+  $way[] = $parents[$first_key];
+
+
+  foreach ($parents as $key => $value) {
+    if( isset($parents[$value]) ){
+      $way[] = $parents[$value];
+    }
+  }
+
+  return array_reverse($way);
+}
+
+$x = findOptimalWay($parents);
+var_dump( $x );
